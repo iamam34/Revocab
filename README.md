@@ -1,6 +1,6 @@
-# HebrewVocab
+# Revocab
 
-web app for reviewing vocabulary
+web app for reviewing vocabulary (initially designed for Biblical Hebrew)
 
 written in python3 with flask
 
