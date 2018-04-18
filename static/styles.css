@@ -1,0 +1,44 @@
+@font-face {
+    /* from http://scripts.sil.org/SILHebrUnic2 */
+    font-family: ezrasilregular;
+    src: url('sileot.ttf') format('truetype'),
+         url('sileot.woff2') format('woff2'),
+         url('sileot.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+}
+
+.entries {
+  min-height: 0px;
+  flex: auto;
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.entry {
+  text-align: right;
+}
+
+.word {
+  font-size: 2em;
+  font-family: ezrasilregular, monospace;
+  color: blue;
+}
+
+.gloss {
+  visibility: hidden;
+}
+
+.entry:focus .gloss {
+  visibility: visible;
+}

@@ -1,0 +1,22 @@
+<!doctype html>
+<head>
+	<title>Amy's Hebrew Helper</title>
+	<link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+	<p>
+		<a href='{{ prev_href }}'>prev</a> 
+		<a href='{{ next_href }}'>next</a>
+	</p>
+	<h1>{{ title }}</h1>
+	<div class='entries'>
+		{% for entry in entries %}
+			<p class='entry' tabindex='0'>
+				<span class='gloss'>{{ entry.gloss }}</span>
+				<a>
+					<span class='word'>{{ entry.word }}</span>
+				</a>
+			</p>
+		{% endfor %}
+	</div>
+</body>
