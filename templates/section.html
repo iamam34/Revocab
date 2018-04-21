@@ -1,22 +1,44 @@
 <!doctype html>
-<head>
-	<title>Amy's Hebrew Helper</title>
-	<link rel="stylesheet" href="/static/styles.css">
-</head>
-<body>
-	<p>
-		<a href='{{ prev_href }}'>prev</a> 
-		<a href='{{ next_href }}'>next</a>
-	</p>
-	<h1>{{ title }}</h1>
-	<div class='entries'>
-		{% for entry in entries %}
-			<p class='entry' tabindex='0'>
-				<span class='gloss'>{{ entry.gloss }}</span>
-				<a>
-					<span class='word'>{{ entry.word }}</span>
-				</a>
-			</p>
-		{% endfor %}
-	</div>
-</body>
+<html lang='en'>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+		<link rel="stylesheet" href="/static/styles.css">
+		
+		<title>Amy's Hebrew Helper</title>
+	</head>
+	<body>
+		<div class='container-fluid'>
+			<h1 class='row col-12'>
+				<a class='col text-right' href='{{ prev_href }}'>&lt;</a>
+				<p class='col-auto text-center'>{{ title }}</p>
+				<a class='col text-left' href='{{ next_href }}'>&gt;</a>
+			</h1>
+			<p>Hover or focus the checkbox to see the gloss for each word.</p>
+			<div class='entries row'>
+				{% for entry in entries %}
+					<div class='col-12 col-sm-6 col-md-4 col-lg-3 row form-check'>
+						<label for='{{ loop.index0 }}' class='col-6 text-right hebrew form-check-label' >
+							{{ entry.word }}
+						</label>
+						<span class='col-6'>
+							<input type='checkbox' class='hebrew text-left form-check-input' id='{{ loop.index0 }}' value=''
+							data-toggle='tooltip' data-placement="right" title='{{ entry.gloss|join("; ") }}' >	
+						</span>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		<script>
+			$(function () {
+				$('[data-toggle="tooltip"]').tooltip()
+			});
+		</script>
+	</body>
+</html>

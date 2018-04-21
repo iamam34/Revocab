@@ -8,37 +8,7 @@
     font-style: normal;
 }
 
-html {
-  height: 100%;
-}
-
-body {
-  height: 100%;
-  display: flex;
-  flex-flow: column;
-}
-
-.entries {
-  min-height: 0px;
-  flex: auto;
-  display: flex;
-  flex-flow: column wrap;
-}
-
-.entry {
-  text-align: right;
-}
-
-.word {
+.hebrew {
   font-size: 2em;
   font-family: ezrasilregular, monospace;
-  color: blue;
-}
-
-.gloss {
-  visibility: hidden;
-}
-
-.entry:focus .gloss {
-  visibility: visible;
 }

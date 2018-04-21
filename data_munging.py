@@ -30,7 +30,7 @@ def parseFile():
         vocabObj.append(sectionObj)
         for entry in section.iterfind('entry'):
             word = entry.find('word').text
-            gloss = entry.find('gloss').text
+            gloss = [g.text for g in entry.findall('gloss')]
             sectionObj.entries.append(Entry(word, gloss))
     
     return vocabObj
