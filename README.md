@@ -7,7 +7,7 @@ written in python3 with flask
 ## running locally
 
 ```
-source venv/bin/activate
+. venv/bin/activate
 FLASKAPP=server.py FLASK_DEBUG=1 flask run
 ```
 
