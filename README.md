@@ -6,8 +6,22 @@ written in python3 with flask
 
 ## local hosting/development
 
-```
-./start.sh
+Quickstart: `./start.sh`
+
+Long version:
+
+```python
+. venv/bin/activate
+
+# EITHER run the flask server 
+FLASK_APP=server.py FLASK_DEBUG=1 flask run
+# and go to http:localhost:5000/section/0
+
+# OR generate the static site
+python generate_static_site.py
+# and go to ./Revocab/static/html/0.html
+
+deactivate
 ```
 
 ## acknowledgements
