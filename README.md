@@ -4,11 +4,10 @@ web app for reviewing vocabulary (initially designed for Biblical Hebrew)
 
 written in python3 with flask
 
-## running locally
+## local hosting/development
 
 ```
-. venv/bin/activate
-FLASKAPP=server.py FLASK_DEBUG=1 flask run
+./start.sh
 ```
 
 ## acknowledgements
