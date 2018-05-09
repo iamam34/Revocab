@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import os
 import xml.etree.ElementTree as ET
 
 class Entry:
@@ -9,7 +10,7 @@ class Entry:
         self.gloss = gloss
         
     def __repr__(self):
-        return '{} {}'.format(self.word, self.gloss)
+        return u'{} {}'.format(self.word, self.gloss, encoding='utf8')
         
 class Section:            
     def __init__(self, title):
@@ -17,13 +18,16 @@ class Section:
         self.entries = []
         
     def __repr__(self):
-        return '{}\n  '.format(self.title) + '\n  '.join([str(word) for word in self.entries])
+        return u'{}\n  '.format(self.title) + u'\n  '.join([unicode(word) for word in self.entries])
     
 def parseFile():
     vocabObj = []
     
-    tree = ET.parse('Basics of Biblical Hebrew.xml')
+    dirname = os.path.dirname(__file__)
+    filename = os.path.join(dirname, 'Basics of Biblical Hebrew.xml')
+    tree = ET.parse(filename)
     root = tree.getroot()
+
     for section in root:
         sectionTitle = section.find('title').text
         sectionObj = Section(sectionTitle)
@@ -37,7 +41,7 @@ def parseFile():
     
 def main():
     vocabObj = parseFile()
-    print('\n'.join([str(section) for section in vocabObj]))
+    print(u'\n'.join([unicode(section) for section in vocabObj]))
 
 if __name__ == '__main__':
     import sys
