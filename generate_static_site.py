@@ -21,17 +21,11 @@ def mkdir_p(path):
         else:
             raise
 
-def main():
-    environment = Environment(
-        loader=FileSystemLoader('./templates'),
-        autoescape=select_autoescape(['html', 'xml']))
-
+def generate_sections(environment, vocab, filepath):
     template = environment.get_template('section.html')
 
-    filepath = './static'
     mkdir_p(filepath)
 
-    vocab = parseFile()
     for index, section in enumerate(vocab):
         page = template.render( 
             title=section.title, 
@@ -41,6 +35,28 @@ def main():
         filename = filepath + '/{}.html'.format(index)
         with codecs.open(filename, 'w', 'utf-8') as destination:
             print(page, file=destination)
+
+def generate_overview(environment, vocab, filepath):
+    template = environment.get_template('overview.html')
+    mkdir_p(filepath)
+
+    page = template.render( 
+        title='Revocab', 
+        entries=[entry for section in vocab for entry in section.entries])
+    filename = filepath + '/overview.html'
+    with codecs.open(filename, 'w', 'utf-8') as destination:
+        print(page, file=destination)
+
+def main():
+    environment = Environment(
+        loader=FileSystemLoader('./templates'),
+        autoescape=select_autoescape(['html', 'xml']))
+
+    vocab = parseFile()
+    
+    #generate_sections(environment, vocab, './static')
+
+    generate_overview(environment, vocab, './static')
 
 if __name__ == '__main__':
     main()
